@@ -70,9 +70,9 @@ def form():
 
         # Store prediction in session
         session['prediction'] = int (prediction)
-        probability = model.predict_proba(input_data)[0][1] * 10000
+        #probability = model.predict_proba(input_data)[0][1] * 10000
         session['prediction'] = int(prediction)
-        session['probability'] = round(probability, 2)
+        #session['probability'] = round(probability, 2)
 
 
         return redirect(url_for('result'))
@@ -94,8 +94,8 @@ def result():
             "Avoid smoking & limit alcohol, Prioritize sleep, and do regular health check-ups."
         ]
         videos = [
-         {"title": "Low Impact Exercises for Diabetes Prevention", "url": "https://www.youtube.com/watch?v=OqJ3W-BbQpQ"},
-        {"title": "Healthy Eating for Diabetes Prevention", "url": "https://www.youtube.com/watch?v=3Q6z7t_MXQ4"}  
+         {"title": "10 Minute Exercise For Diabetes (LOW IMPACT!)", "url": "https://www.youtube.com/watch?v=NbYTSPqq1R4"},
+        {"title": "Healthy Eating for Diabetes Prevention", "url": "https://www.youtube.com/watch?v=wOIZEz0hAY4"}  
     ]
         show_map = False
     elif prediction ==1:
@@ -133,8 +133,7 @@ def result():
                            risk=risk,
                            suggestions=suggestions,
                            videos=videos,
-                           show_map=show_map,
-                           diabetes_percentage=diabetes_percentage)
+                           show_map=show_map)
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # use PORT env var on Render
     app.run(host='0.0.0.0', port=port, debug=True)
