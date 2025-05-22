@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import pickle
 import numpy as np
 from flask import Flask, render_template, request, jsonify
-
+import os
 import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify
 
@@ -136,4 +136,5 @@ def result():
                            show_map=show_map,
                            diabetes_percentage=diabetes_percentage)
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))  # use PORT env var on Render
+    app.run(host='0.0.0.0', port=port, debug=True)
