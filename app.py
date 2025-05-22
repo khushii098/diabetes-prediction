@@ -70,7 +70,7 @@ def form():
 
         # Store prediction in session
         session['prediction'] = int (prediction)
-        probability = model.predict_proba(input_data)[0][1] * 100
+        probability = model.predict_proba(input_data)[0][1] * 10000
         session['prediction'] = int(prediction)
         session['probability'] = round(probability, 2)
 
