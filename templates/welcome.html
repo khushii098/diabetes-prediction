@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .welcome-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            width: 80%;
+            padding: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            color: blue;
+            background-color: #edf7f6;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 150%;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .text {
+            flex: 1;
+            padding-left: 20px;
+            text-align: left;
+            color: brown;
+            font-size: 150%;
+        }
+
+        .image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-box">
+        <div class="header">
+            <h1>Welcome to Diabetes Healthcare System</h1>
+        </div>
+        <div class="content">
+            <div class="image">
+                <img src="{{ url_for('static', filename='doctor.jpg') }}" width="400">
+            </div>
+            <div class="text">
+                <p>This System help in diagnosing and prevent diabetes.Through this System one can check whether he has some diabetic condition
+                    or not. According to that it suggests some remedies that you can try and you can search nearby doctors in your location.
+
+                </p>
+            </div>
+        </div>
+        <div class="btn-container">
+            <a href="{{ url_for('gender') }}" class="btn">Start Diagnosis</a>
+        </div>
+    </div>
+</body>
+</html>

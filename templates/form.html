@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Prediction Form</title>
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        display: flex;
+        width: 90%;
+        max-width: 1300px;
+        height: 90vh;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .image-container {
+        flex: 1;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .form-container {
+        flex: 1;
+        background: linear-gradient(to bottom right, #3f51b5, #2196f3);
+        padding: 30px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        background: #fff;
+        color: #000;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 16px;
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="{{ url_for('static', filename='diabetes.jpg') }}" alt="Diabetes Image">
+    </div>
+    <div class="form-container">
+            <h2>Diabetes Prediction Form</h2>
+            <form method="POST">
+                {% if gender == 'female' %}
+                <label>Pregnancies:</label>
+                <input type="number" name="pregnancies" required>
+                {% endif %}
+
+                <label>Glucose:</label>
+                <input type="number" name="glucose" required>
+
+                <label>Blood Pressure:</label>
+                <input type="number" name="blood_pressure" required>
+
+                <label>Skin Thickness:</label>
+                <input type="number" name="skin_thickness" required>
+
+                <label>Insulin:</label>
+                <input type="number" name="insulin" required>
+
+                <label>BMI:</label>
+                <input type="number" step="any" name="bmi" required>
+
+                <label>Age:</label>
+                <input type="number" name="age" required>
+
+                <label>Diabetes Pedigree Function:</label>
+                <input type="text" inputmode="decimal" name="diabetespedigreefunction" required>
+
+                <button type="submit">Predict</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
