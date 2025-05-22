@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import pickle
 import numpy as np
-import openai
 from flask import Flask, render_template, request, jsonify
 
 import google.generativeai as genai
