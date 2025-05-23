@@ -29,12 +29,16 @@
             color: #ffcc00;
         }
         h1{
-            color:#ffcc00;
+            color: #ffcc00;
         }
 
         h3 {
             font-size: 22px;
             margin-bottom: 15px;
+            color:aquamarine;
+        }
+        h4{
+            color:#ff5722;
         }
 
         ul {
@@ -141,7 +145,23 @@
 
     <!-- Left-Aligned Content -->
     <div class="content">
-        <h1>Prediction: {{ risk }}</h1> 
+        <h1>Prediction: {{ risk }}</h2>
+        {% if diabetes_percentage %}
+            {% set val = diabetes_percentage %}
+            {% if val >= 100 %}
+                {% set percent_str = "%.0f" % val %}
+                {% set result = percent_str[0] ~ percent_str[1] %}
+                <h4>Diabetes Likelihood: {{ result }}%</h4>
+            {% elif val < 1 %}
+                {% set decimal_str = "%.2f" % val %}
+                {% set result = decimal_str[2] ~ decimal_str[3] %}
+                <h4>Diabetes Likelihood: {{ result }}%</h4>
+            {% else %}
+                <h4>Diabetes Likelihood: {{ val | round(0, 'floor') | int }}%</h4>
+            {% endif %}
+        {% endif %}
+
+
         <h3>Here's some suggestions for you that you can try </h3>
         <ul>
             {% for suggestion in suggestions %}
