@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import pickle
 import numpy as np
+import openai
 from flask import Flask, render_template, request, jsonify
-import os
+
 import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify
 
@@ -70,7 +71,7 @@ def form():
 
         # Store prediction in session
         session['prediction'] = int (prediction)
-        probability = model.predict_proba(input_data)[0][1] * 10000
+        probability = model.predict_proba(input_data)[0][1] * 100
         session['prediction'] = int(prediction)
         session['probability'] = round(probability, 2)
 
@@ -94,9 +95,16 @@ def result():
             "Avoid smoking & limit alcohol, Prioritize sleep, and do regular health check-ups."
         ]
         videos = [
-         {"title": "10 Minute Exercise For Diabetes (LOW IMPACT!)", "url": "https://www.youtube.com/watch?v=NbYTSPqq1R4"},
-        {"title": "Healthy Eating for Diabetes Prevention", "url": "https://www.youtube.com/watch?v=wOIZEz0hAY4"}  
+    {
+        "title": "10 Minute Exercise For Diabetes (LOW IMPACT!)",
+        "url": "https://www.youtube.com/watch?v=NbYTSPqq1R4"
+    },
+    {
+        "title": "Healthy Eating with Diabetes",
+        "url": "https://www.youtube.com/watch?v=wOIZEz0hAY4"
+    }
     ]
+
         show_map = False
     elif prediction ==1:
         risk="there may be mild diabetes" 
@@ -133,7 +141,8 @@ def result():
                            risk=risk,
                            suggestions=suggestions,
                            videos=videos,
-                           show_map=show_map)
+                           show_map=show_map,
+                           diabetes_percentage=diabetes_percentage)
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # use PORT env var on Render
     app.run(host='0.0.0.0', port=port, debug=True)
