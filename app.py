@@ -70,9 +70,9 @@ def form():
 
         # Store prediction in session
         session['prediction'] = int (prediction)
-        #probability = model.predict_proba(input_data)[0][1] * 10000
+        probability = model.predict_proba(input_data)[0][1] * 10000
         session['prediction'] = int(prediction)
-        #session['probability'] = round(probability, 2)
+        session['probability'] = round(probability, 2)
 
 
         return redirect(url_for('result'))
